@@ -1,40 +1,14 @@
 import { useEffect, useState } from 'react';
 import { View, TextInput, Button, Text, StyleSheet } from 'react-native';
-import { getTeams } from './src/services/apikl';
+import { NavigationContainer } from '@react-navigation/native';
+import StackNavigation from './src/navigation/StackNavigation';
 
 export default function App() {
-  const [teams, setTeams] = useState([])
-  useEffect(() => {
-    getTeams().then((data) => {
-      console.log(data)
-      setTeams(data)
-    })
-  }, [])
-
 
   return (
-    <View style={styles.container}>
-      <Text>Hola Kings League</Text>
-      <View>
-        {
-          teams.map((team) => (
-            <View key={team.id}>
-              <Text>{team.nombre}</Text>
-            </View>
-          ))
-        }
-      </View>
-    </View>
+    <NavigationContainer>
+      <StackNavigation />
+    </NavigationContainer>
   );
 }
-
-const styles = new StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 70,
-    paddingHorizontal: 15
-  }
-
-})
-
 
